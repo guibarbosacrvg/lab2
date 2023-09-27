@@ -11,8 +11,6 @@
 #define V_SIZE 10000
 #define NUM_PROC 10
 
-
-// 
 int main (int argc, char *argv[]){
     /* int segmento, id, pid, status;
     char* msg = argv[1];
@@ -58,6 +56,7 @@ int main (int argc, char *argv[]){
         }
         i++;
     }
+    
     for(int i = 0; i < V_SIZE; i++){
         wait(&status);
     }

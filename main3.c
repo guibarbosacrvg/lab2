@@ -16,8 +16,6 @@ int main(int argc, char *argv[]) {
     int *p;
     segmento = shmget(IPC_PRIVATE, sizeof(int) * V_SIZE, 0666);
     p = (int *)shmat(segmento, 0, 0);
-    
-    // Inicialize o vetor com o valor 5
     for (int i = 0; i < V_SIZE; i++) {
         p[i] = 5;
     }
@@ -35,20 +33,17 @@ int main(int argc, char *argv[]) {
         i++;
     }
 
-    // Aguarde a conclusão dos trabalhadores
     for (int i = 0; i < NUM_PROC; i++) {
         wait(NULL);
     }
 
-    // Verifique se todas as posições têm valores iguais
-    int areEqual = 1; // Supomos que todos são iguais
+    int areEqual = 1;
     for (int i = 1; i < V_SIZE; i++) {
         if (p[i] != p[0]) {
-            areEqual = 0; // Pelo menos uma posição é diferente
+            areEqual = 0;
             break;
         }
     }
-
     if (areEqual) {
         printf("Todas as posições têm valores iguais: %d\n", p[0]);
     } else {
